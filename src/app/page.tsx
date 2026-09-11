@@ -14,6 +14,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Toast from "@/components/Toast";
 import PrivacyView from "@/components/PrivacyView";
 import TermsView from "@/components/TermsView";
+import ChatWidget from "@/components/chat/ChatWidget";
 import { CONFIG } from "@/lib/config";
 import { SITE } from "@/lib/site";
 
@@ -124,9 +125,11 @@ export default function HomePage() {
       terms: "Terms of Use | CONNECT",
     };
     let pendingFocus = false;
+    let routedHash: string | null = null;
 
     function route() {
       const hash = location.hash;
+      routedHash = hash;
       let name: "home" | "privacy" | "terms" = "home";
       let target: string | null = null;
       if (hash === "#/privacy") name = "privacy";
@@ -198,10 +201,17 @@ export default function HomePage() {
     document.addEventListener("click", onDocumentClick);
     cleanups.push(() => document.removeEventListener("click", onDocumentClick));
 
-    window.addEventListener("popstate", route);
-    cleanups.push(() => window.removeEventListener("popstate", route));
-    window.addEventListener("hashchange", route);
-    cleanups.push(() => window.removeEventListener("hashchange", route));
+    // Re-route only when the fragment changed. The chat assistant adds
+    // same-URL history entries while it's full-screen (so Back closes it);
+    // popping those must not re-scroll or re-focus the page. This also stops
+    // a Back between two hashes routing twice (popstate, then hashchange).
+    function onHistoryChange() {
+      if (location.hash !== routedHash) route();
+    }
+    window.addEventListener("popstate", onHistoryChange);
+    cleanups.push(() => window.removeEventListener("popstate", onHistoryChange));
+    window.addEventListener("hashchange", onHistoryChange);
+    cleanups.push(() => window.removeEventListener("hashchange", onHistoryChange));
 
     /* ---------- Scroll reveals (few, purposeful) ---------- */
     const revealObservers: IntersectionObserver[] = [];
@@ -396,6 +406,8 @@ export default function HomePage() {
       <SiteFooter />
 
       <Toast />
+
+      <ChatWidget />
     </>
   );
 }
