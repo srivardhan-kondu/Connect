@@ -118,7 +118,7 @@ export default function HomePage() {
       terms: $("main[data-view='terms']")!,
     };
     const titles: Record<"home" | "privacy" | "terms", string> = {
-      home: "CONNECT | Connecting Communities. Creating Opportunities.",
+      home: "CONNECT | Bringing our Communities Closer.",
       privacy: "Privacy Policy | CONNECT",
       terms: "Terms of Use | CONNECT",
     };
@@ -336,7 +336,7 @@ export default function HomePage() {
       const url = location.href.split("#")[0];
       const shareData = {
         title: "CONNECT",
-        text: "Connecting Communities. Creating Opportunities. Join the CONNECT waitlist.",
+        text: "Bringing our Communities Closer. Join the CONNECT waitlist.",
         url,
       };
       if (navigator.share) {

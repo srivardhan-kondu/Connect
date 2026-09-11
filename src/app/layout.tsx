@@ -11,11 +11,11 @@ const anekLatin = Anek_Latin({
 });
 
 export const metadata: Metadata = {
-  title: "CONNECT | Connecting Communities. Creating Opportunities.",
+  title: "CONNECT | Bringing our Communities Closer.",
   description:
-    "A trusted digital ecosystem designed to bring communities closer, foster meaningful connections, and unlock new opportunities for collective growth. Join the waitlist.",
+    "A trusted digital ecosystem designed to bring our communities closer, foster meaningful connections, and unlock new opportunities for collective growth. Join the waitlist.",
   openGraph: {
-    title: "CONNECT | Connecting Communities. Creating Opportunities.",
+    title: "CONNECT | Bringing our Communities Closer.",
     description:
       "Something meaningful is being built for communities. Join the waitlist.",
     type: "website",

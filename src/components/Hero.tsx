@@ -6,13 +6,12 @@ export default function Hero() {
       <div className="wrap hero-grid">
         <div className="hero-copy">
           <h1 className="hero-title" id="hero-title">
-            <span className="t-strong">Connecting Communities.</span>
-            <span className="t-light">Creating Opportunities.</span>
+            <span className="t-strong">Bringing our Communities Closer.</span>
           </h1>
           <p className="hero-sub">
-            A trusted digital ecosystem designed to bring communities closer,
-            foster meaningful connections, and unlock new opportunities for
-            collective growth.
+            A trusted digital ecosystem designed to bring our communities
+            closer, foster meaningful connections, and unlock new
+            opportunities for collective growth.
           </p>
           <div className="hero-actions">
             <a
