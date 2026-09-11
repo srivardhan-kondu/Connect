@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Anek_Latin } from "next/font/google";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 const anekLatin = Anek_Latin({
@@ -10,15 +11,31 @@ const anekLatin = Anek_Latin({
   display: "swap",
 });
 
+/*
+  The share image and apple-touch icon come from the file conventions in this
+  folder (opengraph-image.png + .alt.txt, apple-icon.png), which Next turns
+  into tags with dimensions and a content-hashed URL. The Twitter card reuses
+  the Open Graph image, so there is no separate twitter-image file.
+*/
 export const metadata: Metadata = {
-  title: "CONNECT | Bringing our Communities Closer.",
-  description:
-    "A trusted digital ecosystem designed to bring our communities closer, foster meaningful connections, and unlock new opportunities for collective growth. Join the waitlist.",
+  metadataBase: new URL(SITE.url),
+  title: SITE.title,
+  description: SITE.description,
+  applicationName: SITE.name,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "CONNECT | Bringing our Communities Closer.",
-    description:
-      "Something meaningful is being built for communities. Join the waitlist.",
+    title: SITE.title,
+    description: SITE.description,
+    url: "/",
+    siteName: SITE.name,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.title,
+    description: SITE.description,
   },
 };
 

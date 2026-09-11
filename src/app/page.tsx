@@ -15,6 +15,7 @@ import Toast from "@/components/Toast";
 import PrivacyView from "@/components/PrivacyView";
 import TermsView from "@/components/TermsView";
 import { CONFIG } from "@/lib/config";
+import { SITE } from "@/lib/site";
 
 /**
  * This page ports the original static site's behaviour (nav, SPA-style hash
@@ -118,7 +119,7 @@ export default function HomePage() {
       terms: $("main[data-view='terms']")!,
     };
     const titles: Record<"home" | "privacy" | "terms", string> = {
-      home: "CONNECT | Bringing our Communities Closer.",
+      home: SITE.title,
       privacy: "Privacy Policy | CONNECT",
       terms: "Terms of Use | CONNECT",
     };
@@ -336,7 +337,7 @@ export default function HomePage() {
       const url = location.href.split("#")[0];
       const shareData = {
         title: "CONNECT",
-        text: "Bringing our Communities Closer. Join the CONNECT waitlist.",
+        text: "Connect People. Create Opportunities. Grow Communities. Join the CONNECT waitlist.",
         url,
       };
       if (navigator.share) {
