@@ -28,6 +28,15 @@ export default function PrivacyView() {
           with anyone for their own marketing.
         </p>
 
+        <h2>The CONNECT Assistant</h2>
+        <p>
+          Messages you send to the chat assistant on this site are processed
+          by our AI provider, Anthropic, to generate replies. We don&apos;t
+          store your conversation on our servers. It stays in your browser
+          tab until you close it. Please don&apos;t share personal or
+          sensitive information in the chat.
+        </p>
+
         <h2>How long we keep it</h2>
         <p>We keep your details until you unsubscribe or ask us to delete them.</p>
 
