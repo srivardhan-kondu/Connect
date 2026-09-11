@@ -1,12 +1,5 @@
+import { CLAIMS } from "@/lib/content";
 import { Leaf } from "./IconSprite";
-
-const CLAIMS = [
-  { tone: "gold", text: "They create businesses." },
-  { tone: "green", text: "They support families." },
-  { tone: "blue", text: "They nurture talent." },
-  { tone: "red", text: "They preserve culture." },
-  { tone: "gold", text: "They inspire change." },
-] as const;
 
 export default function Impact() {
   return (

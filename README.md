@@ -42,6 +42,45 @@ Open [http://localhost:3000](http://localhost:3000).
 - `reference/connect.original.html` — the original static file, kept as a
   reference / fallback.
 
+## CONNECT Assistant (chatbot)
+
+A chat widget (bottom-right on every view) that answers visitors' questions
+about CONNECT using Claude, and links them to the right section or the
+waitlist.
+
+**Setup:** copy `.env.example` to `.env.local`, set `ANTHROPIC_API_KEY`, and
+restart `npm run dev`. In production, set the same variable in your host's
+environment settings. Without a key the widget still renders, but replies
+fail with "The assistant isn't available right now", and the server log
+explains why.
+
+- `src/app/api/chat/route.ts` — the only code that holds the API key.
+  Validates the conversation, applies per-visitor rate limits, streams the
+  reply from `claude-opus-5` as newline-delimited JSON, and maps API errors
+  to friendly messages. Refusals are retried server-side on Anthropic's
+  recommended fallback model; the system prompt is prompt-cached.
+- `src/lib/chat/system-prompt.ts` — what the assistant knows and how it
+  behaves. Lists come from `src/lib/content.ts` (shared with the sections);
+  the prose mirrors the Hero, Vision, Impact, Join, and legal copy, so
+  **update it when that copy changes.** The assistant is told not to invent
+  launch dates, pricing, or features the site hasn't announced.
+- `src/lib/chat/protocol.ts` — request/stream format and length limits
+  shared by the route and the widget.
+- `src/lib/chat/rate-limit.ts` — 10 requests/minute and 60/hour per IP, in
+  memory. That's per server instance; use a shared store (e.g. Redis) if you
+  need strict limits across serverless instances.
+- `src/components/chat/ChatWidget.tsx` — the launcher and panel: a start
+  view (resume card, suggested questions) and a conversation view with a
+  back button between them; streaming replies with stop/retry/new chat and
+  follow-up suggestions; keyboard and screen-reader support. A new question
+  scrolls to the top of the panel and its reply streams in below. On phones
+  the panel is full-screen, the system Back gesture steps
+  chat → start → closed, and the panel tracks the on-screen keyboard. The
+  conversation lives in `sessionStorage` only.
+- `src/components/chat/ChatMarkdown.tsx` — renders the small Markdown subset
+  replies use, as React elements (no injected HTML). Hash links such as
+  `#join` go through the page's existing router.
+
 ## Notes on fidelity vs. idiom
 
 To guarantee an exact match, `/privacy` and `/terms` are **not** separate
