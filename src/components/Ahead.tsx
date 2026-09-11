@@ -1,13 +1,4 @@
-const POSSIBILITIES = [
-  { tone: "gold", text: "Community Networks" },
-  { tone: "green", text: "Professional Connections" },
-  { tone: "blue", text: "Events & Gatherings" },
-  { tone: "red", text: "Learning & Growth" },
-  { tone: "green", text: "Local Ecosystems" },
-  { tone: "blue", text: "Global Collaboration" },
-  { tone: "red", text: "Support Systems" },
-  { tone: "gold", text: "Meaningful Relationships" },
-] as const;
+import { POSSIBILITIES } from "@/lib/content";
 
 export default function Ahead() {
   return (

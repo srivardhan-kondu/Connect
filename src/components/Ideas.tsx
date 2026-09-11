@@ -1,27 +1,5 @@
+import { IDEAS } from "@/lib/content";
 import { Leaf, Logo } from "./IconSprite";
-
-const IDEAS = [
-  {
-    tone: "gold",
-    title: "Connect",
-    text: "Create meaningful relationships and trusted networks.",
-  },
-  {
-    tone: "green",
-    title: "Collaborate",
-    text: "Unlock opportunities through collective growth.",
-  },
-  {
-    tone: "blue",
-    title: "Engage",
-    text: "Participate in events, conversations, and initiatives that matter.",
-  },
-  {
-    tone: "red",
-    title: "Expand",
-    text: "Grow beyond geographical boundaries and create lasting impact.",
-  },
-] as const;
 
 export default function Ideas() {
   return (
